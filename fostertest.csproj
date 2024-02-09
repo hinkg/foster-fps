@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="FosterFramework" Version="0.1.18-alpha" />
+      <PackageReference Include="SharpGLTF.Core" Version="1.0.0-alpha0031" />
+      <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\**\*.glb" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
+    <Content Include="Assets\**\*.map" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
+    <Content Include="Assets\**\*.png" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
+    <Content Include="Assets\**\*.glsl" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
+    <Content Include="Assets\**\*.ttf" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
+
+
+ <!--  <ItemGroup>
+    <None Update="Assets\Fonts\CozetteVector.ttf"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Textures\prototype_gray.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Textures\prototype_red.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Textures\prototype_blue.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Textures\Texture.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Textures\Tileset.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Cube.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\UVSphere.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\Sky.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+    <None Update="Assets\level.map"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
+  </ItemGroup> -->
+</Project>

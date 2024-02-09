@@ -1,0 +1,6 @@
+obj
+bin
+autosave/
+*.blend
+*.sln
+*.aseprite
