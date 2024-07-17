@@ -1,8 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Foster.Framework;
-using Sledge.Formats;
 using Sledge.Formats.Map.Formats;
 using Sledge.Formats.Map.Objects;
 
@@ -64,6 +67,47 @@ public class Level
             return uv;
         }
 
+        byte GetTexture(string name)
+        {
+            byte textureID = 0;
+
+            if (TextureIDs.TryGetValue(name, out textureID))
+            {
+                return textureID;
+            }
+
+            if (textures.Count >= MaxTextureCount)
+            {
+                return 0;
+            }
+
+            bool foundImage = false;
+
+            var pngPath = System.IO.Path.Join(["Assets/Textures/", name]) + ".png";
+            var jpgPath = System.IO.Path.Join(["Assets/Textures/", name]) + ".jpg";
+
+            if (System.IO.Path.Exists(pngPath))
+            {
+                images.Add(new Image(pngPath));
+                foundImage = true;
+            }
+            else if (System.IO.Path.Exists(jpgPath))
+            {
+                images.Add(new Image(jpgPath));
+                foundImage = true;
+            }
+
+            if (foundImage) {
+                textureID = (byte)textures.Count;
+                TextureIDs.Add(name, textureID);
+
+                textures.Add(new Texture(images.Last()));
+                return textureID;
+            }
+
+            return 0;
+        }
+
         if (obj is Sledge.Formats.Map.Objects.Entity entity)
         {
             entities[entity.ClassName] = entity.GetVectorProperty("origin", Vector3.Zero);
@@ -77,32 +121,7 @@ public class Level
             {
                 CalculateRotatedUV(face, out var rotatedUAxis, out var rotatedVAxis);
 
-                byte textureID = 0;
-                bool gotValue = TextureIDs.TryGetValue(face.TextureName, out textureID);
-
-                if (!gotValue)
-                {
-                    if (textures.Count >= MaxTextureCount)
-                    {
-                        textureID = TextureIDs.First().Value;
-                    }
-                    else
-                    {
-                        textureID = (byte)textures.Count;
-                        TextureIDs.Add(face.TextureName, textureID);
-
-                        if (System.IO.Path.Exists(System.IO.Path.Join(["Assets/Textures/", face.TextureName]) + ".png"))
-                        {
-                            images.Add(new Image(System.IO.Path.Join(["Assets/Textures/", face.TextureName]) + ".png"));
-                        }
-                        else
-                        {
-                            images.Add(new Image(System.IO.Path.Join(["Assets/Textures/", face.TextureName]) + ".jpg"));
-                        }
-
-                        textures.Add(new Texture(images.Last()));
-                    }
-                }
+                byte textureID = GetTexture(face.TextureName);
 
                 for (int i = 0; i < face.Vertices.Count - 2; i++)
                 {

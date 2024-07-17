@@ -1,8 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 using System.Numerics;
-using System.Reflection.Metadata;
-using Foster.Framework;
-using Sledge.Formats;
 
 namespace FosterTest;
 
@@ -77,7 +78,7 @@ public abstract class Entity
 
         isGrounded = false;
 
-        // Test collision against triangles in level
+        // Test collision against (all) triangles in the level
 
         for (int i = 0; i < col.indices.Count / 3; i++)
         {
@@ -89,7 +90,7 @@ public abstract class Entity
 
             if (collider.IntersectTriangle(tri, out var normal, out var depth))
             {
-                var change = normal * Vector3.Dot(velocity.Normalise(), normal);
+                var change = normal * Vector3.Dot(Vector3.Normalize(velocity), normal);
 
                 velocity -= change * velocity.Length();
                 position += normal * depth;
@@ -98,6 +99,8 @@ public abstract class Entity
 
                 if (normal.Z > 0) isGrounded = true;
             }
+
+            if (velocity.Length() < 0.0001) break;
         }
 
         // Jumping

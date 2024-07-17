@@ -1,3 +1,8 @@
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Foster.Framework;

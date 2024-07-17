@@ -1,7 +1,10 @@
-using System.Diagnostics;
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
 using System.Numerics;
 using Foster.Framework;
-using Sledge.Formats;
 
 namespace FosterTest;
 
@@ -92,7 +95,6 @@ public static class Collision
 
         public readonly bool IntersectTriangle(Triangle tri, out Vector3 penetrationNormal, out float penetrationDepth) =>
             IntersectSphereTriangle(this, tri, out penetrationNormal, out penetrationDepth);
-
     }
 
     public static bool IntersectSphereTriangle(Sphere sphere, Triangle tri, out Vector3 penetrationNormal, out float penetrationDepth)
@@ -147,7 +149,7 @@ public static class Collision
                 }
             }
 
-            penetrationNormal = intersection.Normalise();
+            penetrationNormal = intersection.Normalized();
             penetrationDepth = sphere.Radius - intersection.Length();
 
             return true;
@@ -224,7 +226,7 @@ public static class Collision
             }
         }
 
-        // The center of the best sphere candidate:
+        // The center of the best sphere candidate
         Vector3 center = ClosestPointOnLineSegment(capsule.BaseSphere.Origin, capsule.TopSphere.Origin, referencePoint);
 
         return IntersectSphereTriangle(new Sphere(center, capsule.Radius), tri, out penetrationNormal, out penetrationDepth);
