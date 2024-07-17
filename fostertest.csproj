@@ -15,8 +15,8 @@
 
   <ItemGroup>
       <PackageReference Include="FosterFramework" Version="0.1.18-alpha" />
-      <PackageReference Include="SharpGLTF.Core" Version="1.0.0-alpha0031" />
-      <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
+      <PackageReference Include="SharpGLTF.Core" Version="1.0.1" />
+      <PackageReference Include="Sledge.Formats.Map" Version="1.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,18 +26,5 @@
     <Content Include="Assets\**\*.glsl" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
     <Content Include="Assets\**\*.ttf" LinkBase="Assets" CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
-
-
- <!--  <ItemGroup>
-    <None Update="Assets\Fonts\CozetteVector.ttf"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Textures\prototype_gray.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Textures\prototype_red.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Textures\prototype_blue.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Textures\Texture.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Textures\Tileset.png"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Cube.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\UVSphere.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\Sky.glb"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-    <None Update="Assets\level.map"> <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> </None>
-  </ItemGroup> -->
+  
 </Project>
